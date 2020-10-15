@@ -1,7 +1,7 @@
-# crypto-wallet-v1 (crypto-wallet-v1)
+# crypto-wallet-v1 (Vue Vuex Quasar Framework Firebase Project)
 
-<h4>Vue Vuex Quasar Framework Firebase Project</h4>
-<h3> CryptoWallet - Buy/Sell Cryptos in your local fiat currency</h3>
+<h4>DESCRIPTION:</h4>
+<h3>CryptoWallet - Buy/Sell Cryptos in your local fiat currency</h3>
 
 
 
