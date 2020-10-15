@@ -8,14 +8,20 @@ import * as usersAPI from '../../services/usersAPI.js'
 export default {
 
   [types.SET_USER_ID]: async function ({ state, commit }) {
+    console.log('entradneo en set userID actions')
     try {
       const userId = await userService.getCurrentUserId()
-      commit(types.SET_USER_ID, userId)
-      return userId
+      console.log(':ACTIONS.. userIDDD devuelto por userSercvice', userId)
+      if (userId) {
+        commit(types.SET_USER_ID, userId)
+        return userId
+      } else { return null }
+
     } catch (error) {
       return null
     }
   },
+
 
   [types.SET_DATA_OF_CURRENT_USER]: async function ({ state, commit }, userId) {
     let data = await usersAPI.getDataByUser(userId)

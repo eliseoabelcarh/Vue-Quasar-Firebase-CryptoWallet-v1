@@ -17,6 +17,7 @@
               <q-btn
                 color="deep-purple-13"
                 label="Logout"
+                @click="this.logout"
                 outline
                 rounded
                 size="md"
@@ -67,6 +68,12 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    logout() {
+      console.log("logout succeess");
+      this.$store.dispatch("auth/logout");
+    }
   }
 };
 </script>

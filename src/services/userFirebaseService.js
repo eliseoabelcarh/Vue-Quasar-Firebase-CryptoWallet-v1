@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
 
-export async function getCurrentUser() {
+export async function getCurrentUserFirebase() {
   return firebase.auth().currentUser
 }

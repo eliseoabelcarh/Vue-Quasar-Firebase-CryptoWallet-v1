@@ -6,7 +6,7 @@
         <q-avatar>
           <q-btn flat round dense icon="whatshot" />
         </q-avatar>
-        <q-toolbar-title>Title</q-toolbar-title>
+        <q-toolbar-title>Title: {{ loggedIn }}</q-toolbar-title>
 
         <CardAccount
           v-if="loggedIn"
@@ -22,7 +22,7 @@
           @click="right = !right"
         />
 
-        <div v-else>Login - Register</div>
+        <div v-else><Login></Login></div>
       </q-toolbar>
     </q-header>
 
@@ -48,13 +48,13 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   components: {
     CardAccount: () => import("../components/Menus/CardAccount.vue"),
-    RightMenu: () => import("../components/Menus/RightMenu.vue")
-    // Login: () => import("../components/Auth/Login.vue")
+    RightMenu: () => import("../components/Menus/RightMenu.vue"),
+    Login: () => import("../components/Auth/Login.vue")
   },
   computed: {
     ...mapState("auth", ["loggedIn"]),
