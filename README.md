@@ -1,6 +1,10 @@
 # crypto-wallet-v1 (crypto-wallet-v1)
 
-none
+<h4>Vue Vuex Quasar Framework Firebase Project</h4>
+<h3> CryptoWallet - Buy/Sell Cryptos in your local fiat currency</h3>
+
+
+
 
 ## Install the dependencies
 ```bash
