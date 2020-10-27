@@ -1,6 +1,6 @@
 
 
-const data = {
+let data = {
 
   profile: {
 
@@ -209,6 +209,10 @@ const data = {
   ]
 }
 
+import * as firebaseService from '../services/userFirebaseService.js'
+import * as userModel from '../models/user.js'
+import { db } from '../boot/firebase.js'
+
 
 
 //este pregunta a Persistencia
@@ -238,15 +242,66 @@ async function loadData() {
   return dao
 }
 
+function saveSomething() {
+  console.log('saveee somthigggggggggggg------')
+
+
+
+  // Add a new document in collection "profile"
+
+  /* db.collection("profiles").doc("LA").set({
+    name: "Los Angeles",
+    state: "CA",
+    country: "USA"
+  })
+    .then(function () {
+      console.log("Document successfully written!");
+    })
+    .catch(function (error) {
+      console.error("Error writing document: ", error);
+    });
+ */
+
+
+
+  const userIdDoc = 'MIGb8isp2oQFR9DC9DQO8PeKjay2'
+
+  var docRef = db.collection("profiles").doc(userIdDoc);
+
+  docRef.get().then(function (doc) {
+    if (doc.exists) {
+      console.log("Document data:", doc.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch(function (error) {
+    console.log("Error getting document:", error);
+  });
+}
+
+
+
+
 
 
 
 //usersAPI pregunta a Dao
 export async function getDataByUser(userId) {
+
+  saveSomething()
+
+
+
+
   //const dao = await loadData()
   //let data = await dao.getWalletsByUserId(userId)
   //return data
   //BUSCO Y UNO TODAS LAST ABLAS CON LA INFO DEL USUARIO Y LO EVUELVO
+  let currentUser = await firebaseService.getCurrentUserFirebase()
+  let profileGoogle = userModel.crearProfileForGoogleUsers(currentUser)
+  data.profile = profileGoogle
+  console.log('DATAAAAAAAAAAA', profileGoogle)
   return data
 }
 

@@ -7,7 +7,7 @@
 import { Loading } from "quasar";
 export default {
   name: "App",
-  created: function() {
+  beforeCreate: function() {
     Loading.show();
     setTimeout(() => {
       const user = this.$store

@@ -6,18 +6,19 @@ import "firebase/auth"
 
 // firebase init - add your own config here
 const firebaseConfig = {
-  apiKey: "AIzaSyACRcXrJiQmLaPgq72nb2-z5HhNK_sJrGA",
-  authDomain: "crypto-wallet-v1-vue.firebaseapp.com",
-  databaseURL: "https://crypto-wallet-v1-vue.firebaseio.com",
-  projectId: "crypto-wallet-v1-vue",
-  storageBucket: "crypto-wallet-v1-vue.appspot.com",
-  messagingSenderId: "293741141886",
-  appId: "1:293741141886:web:72d58700d4d406b18bdd2f"
+  apiKey: "AIzaSyBH1eDVe519YvA0BdWxyp4mzOoTITYl9Vg",
+  authDomain: "vuequasarfirebasecryptowallet1.firebaseapp.com",
+  databaseURL: "https://vuequasarfirebasecryptowallet1.firebaseio.com",
+  projectId: "vuequasarfirebasecryptowallet1",
+  storageBucket: "vuequasarfirebasecryptowallet1.appspot.com",
+  messagingSenderId: "250915762074",
+  appId: "1:250915762074:web:a809910063db17ad255423"
 }
 
 
 let firebaseApp = firebase.initializeApp(firebaseConfig)
 let firebaseAuth = firebaseApp.auth()
 let db = firebase.firestore();
+
 
 export { firebaseAuth, db }

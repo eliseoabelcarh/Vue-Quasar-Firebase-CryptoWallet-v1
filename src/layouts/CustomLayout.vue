@@ -6,7 +6,7 @@
         <q-avatar>
           <q-btn flat round dense icon="whatshot" />
         </q-avatar>
-        <q-toolbar-title>Title: {{ loggedIn }}</q-toolbar-title>
+        <q-toolbar-title>CryptoWallet</q-toolbar-title>
 
         <CardAccount
           v-if="loggedIn"
