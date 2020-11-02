@@ -1,7 +1,7 @@
-# crypto-wallet-v1 (Vue Vuex Quasar Framework Firebase Project)
+## crypto wallet v1
+#### Vue Vuex Quasar Framework Firebase
 
-<h4>DESCRIPTION:</h4>
-<h3>CryptoWallet - Buy/Sell Cryptos in your local fiat currency</h3>
+`similars: ripio, satoshitango, argenbtc`
 
 ### Home - Login with Gmail
 ![Screenshot](./screenshots/home.png)
