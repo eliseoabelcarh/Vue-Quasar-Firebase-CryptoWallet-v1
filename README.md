@@ -3,21 +3,27 @@
 <h4>DESCRIPTION:</h4>
 <h3>CryptoWallet - Buy/Sell Cryptos in your local fiat currency</h3>
 
-`
-![Screenshot](home.png)
- `
+### Home - Login with Gmail
+![Screenshot](./screenshots/home.png)
+
+### RealTime API for crypto market prices
+![Screenshot](./screenshots/markets.png)
+
+### Buy or sell Crypto
+![Screenshot](./screenshots/buysell.png)
+
+### Dashboard
+![Screenshot](./screenshots/dashboard.png)
+
+#### clone repo for more pages
 
 
-![Screenshot](markets.png)
-![Screenshot](buysell.png)
-![Screenshot](dashboard.png)
-
-## Install the dependencies
+#### Install the dependencies
 ```bash
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+#### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
 quasar dev
 ```
