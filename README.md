@@ -3,8 +3,14 @@
 <h4>DESCRIPTION:</h4>
 <h3>CryptoWallet - Buy/Sell Cryptos in your local fiat currency</h3>
 
+`
+![Screenshot](home.png)
+ `
 
 
+![Screenshot](markets.png)
+![Screenshot](buysell.png)
+![Screenshot](dashboard.png)
 
 ## Install the dependencies
 ```bash
