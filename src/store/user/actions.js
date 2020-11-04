@@ -30,8 +30,13 @@ export default {
 
 
   [types.ADD_BANK_ACCOUNT]: function ({ state, commit }, payload) {
+    //debería enviarlo antes a base de datos ..hacer async proximanente
     payload.id = state.user.bankAccounts.length + 1
     commit(types.ADD_BANK_ACCOUNT, payload)
+  },
+  [types.EDIT_BANK_ACCOUNT]: async function ({ state, commit }, payload) {
+    let data = await usersAPI.editBankAccount(payload)
+    commit(types.EDIT_BANK_ACCOUNT, data)
   },
 
   [types.SET_DEPOSITO_A_ESTADO_PAGADO]: function ({ commit, state }, payload) {

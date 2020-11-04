@@ -243,12 +243,7 @@ async function loadData() {
 }
 
 function saveSomething() {
-  console.log('saveee somthigggggggggggg------')
-
-
-
   // Add a new document in collection "profile"
-
   /* db.collection("profiles").doc("LA").set({
     name: "Los Angeles",
     state: "CA",
@@ -261,13 +256,8 @@ function saveSomething() {
       console.error("Error writing document: ", error);
     });
  */
-
-
-
   const userIdDoc = 'MIGb8isp2oQFR9DC9DQO8PeKjay2'
-
   var docRef = db.collection("profiles").doc(userIdDoc);
-
   docRef.get().then(function (doc) {
     if (doc.exists) {
       console.log("Document data:", doc.data());
@@ -289,19 +279,14 @@ function saveSomething() {
 //usersAPI pregunta a Dao
 export async function getDataByUser(userId) {
 
-  saveSomething()
-
-
-
-
+  saveSomething()//TODO para integrar proximamente a firestore db
   //const dao = await loadData()
   //let data = await dao.getWalletsByUserId(userId)
   //return data
-  //BUSCO Y UNO TODAS LAST ABLAS CON LA INFO DEL USUARIO Y LO EVUELVO
+  //BUSCO Y UNO TODAS LAS TABLAS CON LA INFO DEL USUARIO Y LO dEVUELVO
   let currentUser = await firebaseService.getCurrentUserFirebase()
   let profileGoogle = userModel.crearProfileForGoogleUsers(currentUser)
   data.profile = profileGoogle
-  console.log('DATAAAAAAAAAAA', profileGoogle)
   return data
 }
 
@@ -315,7 +300,19 @@ export async function getSaldoActualByAccount(accountCode) {
     }
   })
 }
+export async function editBankAccount(bankAccount) {
+  return new Promise((resolve, reject) => {
+    let arrayConCuentaEncontrada = data.bankAccounts.filter(cuenta => cuenta.id === bankAccount.id)
 
+    if (arrayConCuentaEncontrada.length) {
+      //debería editar la cuenta con los datos que llegaron en la db y devolverla
+      // a modo pruebas devuelvo la misma q llegó
+      resolve(bankAccount)
+    } else {
+      reject(null)
+    }
+  })
+}
 export async function procesarCompra(cuentaParaDescontar, montoADescontar, cuentaParaAcreditar, montoAAcreditar) {
   return new Promise((resolve, reject) => {
     /*   user.accounts[cuentaParaDescontar].saldoActual -= montoADescontar

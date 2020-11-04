@@ -96,7 +96,7 @@ export default {
 
   methods: {
     closePop() {
-      //eventBus usado en acá declarado en Deposit
+      //eventBus usado acá -- declarado en Deposit
       this.$root.$emit("closePopup");
     },
     onSubmit() {

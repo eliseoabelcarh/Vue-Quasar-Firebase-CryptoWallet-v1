@@ -1,42 +1,68 @@
 <template>
-  <div flat bordered>
-    <q-table
-      title="Table"
-      dense
-      :data="this.getPendingDeposits"
-      :columns="columns"
-      row-key="id"
-      :selected-rows-label="getSelectedString"
-      selection="multiple"
-      :selected.sync="selected"
-      :filter="filter"
-      :loading="loading"
-      color="blue-grey-10"
-    >
-      <template v-slot:top style="display:block">
-        <div class="text-h6 q-mb-md text-center" style="min-width:90%">
-          Depositos Pendientes en ARS
-        </div>
+  <div>
+    <div>
+      <q-dialog v-model="confirm" persistent>
+        <q-card>
+          <q-card-section class="row items-center">
+            <q-avatar
+              icon="fas fa-exclamation"
+              color="red"
+              text-color="white"
+            />
+            <span class="q-ml-sm">Está seguro de eliminar items?</span>
+          </q-card-section>
 
-        <q-btn
-          class="q-mb-md"
-          color="deep-purple-13"
-          rounded
-          :disable="loading"
-          label="Confirmar Pago"
-          @click="ejecutarAccion"
-        />
-        <q-btn
-          class="q-ml-sm q-mb-md"
-          color="deep-purple-13"
-          rounded
-          outline
-          :disable="loading"
-          label="Eliminar"
-          @click="eliminarSeleccionados"
-        />
+          <q-card-actions align="right">
+            <q-btn flat label="Cancelar" color="primary" v-close-popup />
+            <q-btn
+              flat
+              label="Sí, Borrar"
+              color="primary"
+              v-close-popup
+              @click="eliminarSeleccionados"
+            />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
+    </div>
+    <div flat bordered>
+      <q-table
+        title="Table"
+        dense
+        :data="this.getPendingDeposits"
+        :columns="columns"
+        row-key="id"
+        :selected-rows-label="getSelectedString"
+        selection="multiple"
+        :selected.sync="selected"
+        :filter="filter"
+        :loading="loading"
+        color="blue-grey-10"
+      >
+        <template v-slot:top style="display:block">
+          <div class="text-h6 q-mb-md text-center" style="min-width:90%">
+            Depositos Pendientes en ARS
+          </div>
 
-        <!--<q-space />
+          <q-btn
+            class="q-mb-md"
+            color="deep-purple-13"
+            rounded
+            :disable="loading"
+            label="Confirmar Pago"
+            @click="ejecutarAccion"
+          />
+          <q-btn
+            class="q-ml-sm q-mb-md"
+            color="deep-purple-13"
+            rounded
+            outline
+            :disable="loading"
+            label="Eliminar"
+            @click="confirmarDelete"
+          />
+
+          <!--<q-space />
         <q-input
           borderless
           dense
@@ -48,9 +74,10 @@
             <q-icon name="search" />
           </template>
         </q-input>-->
-      </template>
-    </q-table>
-    <!--<div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
+        </template>
+      </q-table>
+      <!--<div class="q-mt-md">Selected: {{ JSON.stringify(selected) }}</div>-->
+    </div>
   </div>
 </template>
 
@@ -68,6 +95,7 @@ export default {
       loading: false,
       filter: "",
       rowCount: 10,
+      confirm: false,
       columns: [
         {
           name: "tipo",
@@ -127,8 +155,18 @@ export default {
         this.loading = false;
       }, 3500);
     },
-
+    confirmarDelete() {
+      this.confirm = true;
+    },
     eliminarSeleccionados() {
+      if (this.selected.length === 0) {
+        this.$q.notify({
+          message: "Nada seleccionado.",
+          type: "info",
+          timeout: 1500
+        });
+        return;
+      }
       this.loading = true;
       setTimeout(() => {
         this.$store.dispatch("user/deletePendingDeposits", this.selected);

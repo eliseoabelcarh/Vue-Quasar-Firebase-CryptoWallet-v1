@@ -15,6 +15,7 @@
 
           <span class="text-weight-medium">{{ account.CBU }} </span>
         </q-item-label>
+
         <q-item-label caption lines="1">
           Titular: {{ account.titular }}
         </q-item-label>
@@ -25,8 +26,7 @@
 
       <q-item-section top side>
         <div class="text-grey-8 q-gutter-xs">
-          <q-btn size="12px" flat dense round icon="delete" />
-          <q-btn size="12px" flat dense round icon="more_vert" />
+          <FormEditBankAccount :account="account"></FormEditBankAccount>
         </div>
       </q-item-section>
     </q-item>
@@ -35,8 +35,17 @@
 
 <script>
 export default {
+  components: {
+    FormEditBankAccount: () => import("../settings/FormEditBankAccount.vue")
+  },
   props: {
     account: Object
+  },
+  data() {
+    return {
+      editing: true,
+      banco: this.account.banco
+    };
   }
 };
 </script>
