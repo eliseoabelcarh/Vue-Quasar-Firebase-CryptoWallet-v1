@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     close() {
-      console.log("ejeeeeeeeee");
       this.showModal = false;
     }
   },

@@ -38,6 +38,7 @@ export const GET_ALL_BANK_ACCOUNTS = 'getAllBankAccounts'
 export const GET_ALL_BANK_ACCOUNTS_OBJ = 'getAllBankAccountsObj'
 
 export const EDIT_BANK_ACCOUNT = 'editBankAccount'
+export const DELETE_BANK_ACCOUNT = 'deleteBankAccount'
 export const ADD_BANK_ACCOUNT = 'addBankAccount'
 export const SET_DEPOSITO_A_ESTADO_PAGADO = 'setDepositoAEstadoPagado'
 

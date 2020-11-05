@@ -27,6 +27,41 @@
       <q-item-section top side>
         <div class="text-grey-8 q-gutter-xs">
           <FormEditBankAccount :account="account"></FormEditBankAccount>
+          <q-btn
+            size="12px"
+            flat
+            dense
+            round
+            icon="delete"
+            @click="confirmarDelete"
+          />
+          <q-dialog v-model="confirm" persistent>
+            <q-card>
+              <q-card-section class="row items-center">
+                <q-avatar
+                  icon="fas fa-exclamation"
+                  color="red"
+                  text-color="white"
+                />
+                <span class="q-ml-sm">Está seguro de eliminar items?</span>
+              </q-card-section>
+
+              <q-card-actions align="right">
+                <q-btn
+                  flat
+                  label="Cancelar"
+                  color="primary"
+                  @click="closeModal"
+                />
+                <q-btn
+                  flat
+                  label="Sí, Borraloo"
+                  color="primary"
+                  @click="deleteBankAccount"
+                />
+              </q-card-actions>
+            </q-card>
+          </q-dialog>
         </div>
       </q-item-section>
     </q-item>
@@ -44,8 +79,21 @@ export default {
   data() {
     return {
       editing: true,
-      banco: this.account.banco
+      banco: this.account.banco,
+      confirm: false
     };
+  },
+  methods: {
+    confirmarDelete() {
+      this.confirm = true;
+    },
+    deleteBankAccount() {
+      this.closeModal();
+      this.$store.dispatch("user/deleteBankAccount", this.account);
+    },
+    closeModal() {
+      this.confirm = false;
+    }
   }
 };
 </script>

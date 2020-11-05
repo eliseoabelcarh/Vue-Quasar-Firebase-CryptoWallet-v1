@@ -260,7 +260,7 @@ function saveSomething() {
   var docRef = db.collection("profiles").doc(userIdDoc);
   docRef.get().then(function (doc) {
     if (doc.exists) {
-      console.log("Document data:", doc.data());
+      console.log("Document data from firebase:", doc.data());
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -306,6 +306,19 @@ export async function editBankAccount(bankAccount) {
 
     if (arrayConCuentaEncontrada.length) {
       //debería editar la cuenta con los datos que llegaron en la db y devolverla
+      // a modo pruebas devuelvo la misma q llegó
+      resolve(bankAccount)
+    } else {
+      reject(null)
+    }
+  })
+}
+export async function deleteBankAccount(bankAccount) {
+  return new Promise((resolve, reject) => {
+    let arrayConCuentaEncontrada = data.bankAccounts.filter(cuenta => cuenta.id === bankAccount.id)
+
+    if (arrayConCuentaEncontrada.length) {
+      //debería eliminar la cuenta con los datos que llegaron en la db y devolverla
       // a modo pruebas devuelvo la misma q llegó
       resolve(bankAccount)
     } else {

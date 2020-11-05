@@ -19,7 +19,24 @@
 </template>
 
 <script>
-export default {};
+import { Loading } from "quasar";
+export default {
+  beforeCreate: function() {
+    Loading.show();
+    setTimeout(() => {
+      const user = this.$store
+        .dispatch("user/setUserId")
+        .then(userId => {
+          if (userId) {
+            this.$store.dispatch("auth/setLoggedIn", true);
+            this.$store.dispatch("user/setDataOfCurrentUser", userId);
+          }
+        })
+        .catch(err => console.log(err));
+      Loading.hide();
+    }, 500);
+  }
+};
 </script>
 
 <style >

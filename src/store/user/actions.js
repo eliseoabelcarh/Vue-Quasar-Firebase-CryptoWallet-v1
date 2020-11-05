@@ -8,10 +8,8 @@ import * as usersAPI from '../../services/usersAPI.js'
 export default {
 
   [types.SET_USER_ID]: async function ({ state, commit }) {
-    console.log('entradneo en set userID actions')
     try {
       const userId = await userService.getCurrentUserId()
-      console.log(':ACTIONS.. userIDDD devuelto por userSercvice', userId)
       if (userId) {
         commit(types.SET_USER_ID, userId)
         return userId
@@ -38,6 +36,11 @@ export default {
     let data = await usersAPI.editBankAccount(payload)
     commit(types.EDIT_BANK_ACCOUNT, data)
   },
+  [types.DELETE_BANK_ACCOUNT]: async function ({ state, commit }, payload) {
+    let data = await usersAPI.deleteBankAccount(payload)
+    commit(types.DELETE_BANK_ACCOUNT, data)
+  },
+
 
   [types.SET_DEPOSITO_A_ESTADO_PAGADO]: function ({ commit, state }, payload) {
     if (payload.length == 0) {

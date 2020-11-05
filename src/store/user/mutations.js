@@ -20,15 +20,18 @@ export default {
   },
 
   [types.EDIT_BANK_ACCOUNT]: function (state, payload) {
-    let indexSearched = 0
-    let elemento = state.user.bankAccounts.filter(cuenta => payload.id === cuenta.id)[0]
+    let elemento = state.user.bankAccounts.filter(cuenta => cuenta.id === payload.id)[0]
     let index = state.user.bankAccounts.indexOf(elemento);
     state.user.bankAccounts[index].banco = payload.banco
     state.user.bankAccounts[index].CBU = payload.CBU
     state.user.bankAccounts[index].titular = payload.titular
     state.user.bankAccounts[index].moneda = payload.moneda
   },
+  [types.DELETE_BANK_ACCOUNT]: function (state, payload) {
+    state.user.bankAccounts = state.user.bankAccounts.filter(cuenta => cuenta.id !== payload.id)
 
+    //state.user.bankAccounts = state.user.bankAccounts.splice(index - 1, 1)
+  },
   [types.UPDATE_PENDING_DEPOSITS]: function (state, payload) {
     state.user.pendingDeposits = [...payload]
   },

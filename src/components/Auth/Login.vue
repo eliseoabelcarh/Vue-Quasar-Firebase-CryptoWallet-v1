@@ -40,7 +40,7 @@ export default {
       this.loginUser(this.formData);
     }, */
     loginWithGoogle: function() {
-      console.log("enLoginnnnnn");
+      console.log("LogiN with google");
       this.$store
         .dispatch("auth/loginWithGoogle")
         .then(response => {
